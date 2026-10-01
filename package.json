@@ -7,8 +7,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "build": "npm install --prefix backend && npm install --prefix frontend --include=dev && npm run build --prefix frontend",
-    "start": "npm start --prefix backend",
-    "seed": "npm run seed --prefix backend"
+    "build": "cd backend && npm install && cd ../frontend && npm install --include=dev && npm run build",
+    "start": "cd backend && npm start",
+    "seed": "cd backend && npm run seed"
   }
 }
