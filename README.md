@@ -37,6 +37,16 @@ Tables are created on startup with `sequelize.sync()`. A default admin is create
 | Normal user | user1@example.com        | `Password@123` |
 | Normal user | user2@example.com        | `Password@123` |
 
+## Deploying (Render)
+
+`render.yaml` describes a web service and a PostgreSQL database. In production the backend serves the built frontend, so the site and API share one URL.
+
+1. On [render.com](https://render.com), choose **New → Blueprint** and connect this repository.
+2. When prompted, enter an `ADMIN_PASSWORD` (8–16 characters, one uppercase letter and one special character).
+3. Click **Apply**. Render builds the app, creates the database and gives you a `https://<name>.onrender.com` link.
+
+The app reads the database location from `DATABASE_URL` when it is set, and from the `DB_*` variables otherwise. Set `DB_SSL=true` for hosts that require SSL.
+
 ## Database schema
 
 ```

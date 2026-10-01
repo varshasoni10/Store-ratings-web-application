@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: store-ratings
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: store-ratings-db
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: ADMIN_NAME
+        value: Default System Administrator
+      - key: ADMIN_EMAIL
+        value: admin@storeratings.com
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: ADMIN_ADDRESS
+        value: Head Office, Platform HQ
+
+databases:
+  - name: store-ratings-db
+    plan: free
+    databaseName: store_ratings
